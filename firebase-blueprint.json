@@ -1,0 +1,92 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile and skin preferences",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "fullName": { "type": "string" },
+        "email": { "type": "string" },
+        "age": { "type": "number" },
+        "skinGoals": { "type": "array", "items": { "type": "string" } },
+        "skinType": { "type": "string", "enum": ["oily", "dry", "combination", "sensitive", "normal"] },
+        "concerns": { "type": "array", "items": { "type": "string" } },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email"]
+    },
+    "Product": {
+      "title": "Product",
+      "description": "Skincare product details",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "brand": { "type": "string" },
+        "category": { "type": "string" },
+        "price": { "type": "number" },
+        "description": { "type": "string" },
+        "ingredients": { "type": "array", "items": { "type": "string" } },
+        "image": { "type": "string" },
+        "suitableFor": { "type": "array", "items": { "type": "string" } },
+        "concerns": { "type": "array", "items": { "type": "string" } },
+        "rating": { "type": "number" },
+        "reviewCount": { "type": "number" }
+      },
+      "required": ["id", "name", "brand", "price"]
+    },
+    "Analysis": {
+      "title": "Skin Analysis",
+      "description": "Results of skin analysis",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "date": { "type": "string", "format": "date-time" },
+        "skinType": { "type": "string" },
+        "concerns": { "type": "array", "items": { "type": "string" } },
+        "imageUrl": { "type": "string" },
+        "confidenceScore": { "type": "number" }
+      },
+      "required": ["id", "userId", "date", "skinType"]
+    },
+    "Routine": {
+      "title": "Skincare Routine",
+      "description": "User personalized routine",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "morning": { "type": "array", "items": { "$ref": "#/entities/RoutineStep" } },
+        "evening": { "type": "array", "items": { "$ref": "#/entities/RoutineStep" } }
+      }
+    },
+    "RoutineStep": {
+      "title": "Routine Step",
+      "type": "object",
+      "properties": {
+        "productId": { "type": "string" },
+        "order": { "type": "number" },
+        "instructions": { "type": "string" }
+      }
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles"
+    },
+    "/products/{productId}": {
+      "schema": "Product",
+      "description": "Global product catalog"
+    },
+    "/analyses/{analysisId}": {
+      "schema": "Analysis",
+      "description": "Skin analysis history"
+    },
+    "/routines/{userId}": {
+      "schema": "Routine",
+      "description": "User routines"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Glow Sense AI",
+  "description": "AI-powered skincare e-commerce PWA for personalized routines and analysis.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": [
+    "AI Skin Analysis",
+    "Personalized Recommendations",
+    "Skincare Routine Generator",
+    "E-commerce Shop"
+  ]
+}

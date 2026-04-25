@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", serif;
+  
+  --color-paper: #FAF9F6;
+  --color-ink: #2D2926;
+  --color-tan: #D4A373;
+  --color-soft-tan: #F2ECE4;
+  --color-muted-tan: #E9E4DE;
+  
+  --color-primary: var(--color-tan);
+  --color-secondary: #A3AD98; /* Sage from design */
+
+  --radius-huge: 2.5rem;
+  --radius-massive: 3rem;
+}
+
+@layer base {
+  body {
+    @apply font-sans bg-paper text-ink selection:bg-tan/20;
+  }
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.tracking-widest-plus {
+  letter-spacing: 0.3em;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
